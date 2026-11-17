@@ -511,3 +511,84 @@ Ce cahier est la référence du projet. Cette section recense ce qu'il reste à 
 | Diffusion du logiciel | Usage interne ; partage avec d'autres églises | Après la V2 |
 | Fonctions citées sans description | Préciser ou abandonner Lyric Banner (ANN-08), Cloud (AUT-11) et Resi (PRJ-12) | Avant la V4 |
 | Contenu de V4 et V5 | Garder, réduire ou réordonner selon les besoins de l'église | Après la V3 |
+
+## 13. Découpage en lots de travail
+
+Le travail est découpé en 28 lots, rattachés aux versions de la section 3. Un lot est un morceau livrable et testable seul. Chaque exigence de la section 4 appartient à un seul lot ; aucune n'est oubliée.
+
+**Un lot est terminé quand**
+
+1. toutes ses exigences sont réalisées ;
+2. ses tests automatisés passent et il est essayé sur le matériel de l'église ;
+3. le cahier et les décisions ouvertes (section 9) sont à jour ;
+4. ses tâches sont fermées dans le dépôt.
+
+Une version est terminée quand tous ses lots le sont et que sa recette (section 8) est passée. Les lots d'une version se font dans l'ordre du tableau, sauf si la colonne « Dépend de » permet de les mener en parallèle.
+
+### V0 : prototype technique
+
+| Lot | Contenu | Exigences | Dépend de |
+| --- | --- | --- | --- |
+| L0 | Prototype de la fenêtre de projection (second écran, texte avec ombre et contour, vidéo en boucle), analyse des fichiers VideoPsalm, choix de la technologie, vérification des licences | Aucune (prototype) | Aucun |
+
+### V1 : culte de base
+
+| Lot | Contenu | Exigences | Dépend de |
+| --- | --- | --- | --- |
+| L1 | Socle du logiciel : base de données, gestion des écrans, interface en français, clavier, sauvegarde et restauration | ERG-01, ERG-02, ERG-03 | L0 |
+| L2 | Moteur de diapositives et de rendu, thèmes de base, projection plein écran, aperçu et direct | THM-01, THM-02, THM-03, PRJ-01, PRJ-02, PRJ-03 | L1 |
+| L3 | Lecteur de la bibliothèque VideoPsalm (chants et Bibles), protection des fichiers d'origine, journal des contenus non reconnus | VPS-01, VPS-02, VPS-03, VPS-04, VPS-05, BIB-01 | L1 |
+| L4 | Chants : bibliothèque, recherche instantanée, ordre des couplets, affichage couplet par couplet | CHT-01, CHT-02, CHT-03, CHT-04 | L2, L3 |
+| L5 | Bible : recherche par référence et par mot-clé, affichage d'un verset à la volée | BIB-02, BIB-03, BIB-04 | L2, L3 |
+| L6 | Agenda du culte, reprise après plantage, diapositives personnalisées, logo et écran noir, images | AGD-01, AGD-02, AGD-03, ANN-01, ANN-02, MED-01 | L4, L5 |
+
+Recette V1 : section 8.
+
+### V2 : culte complet
+
+| Lot | Contenu | Exigences | Dépend de |
+| --- | --- | --- | --- |
+| L7 | Vidéo et audio, fonds animés, PowerPoint et PDF, glisser-déposer, lecture en boucle | MED-02, MED-03, MED-04, AGD-04, AGD-05 | L6 |
+| L8 | Chants avancés : recueils, édition à la volée, éditeur de paroles, MP3 associés, bilingue, imports d'autres logiciels | CHT-05, CHT-06, CHT-07, CHT-09, CHT-10, CHT-11 | L4 |
+| L9 | Accords : affichage, transposition, capo, ChordPro | CHT-08 | L8 |
+| L10 | Bible avancée : affichage bilingue, recueil de versets | BIB-05, BIB-06 | L5 |
+| L11 | Annonces, alertes, horloge, compte à rebours et minuteurs | ANN-03, ANN-04, ANN-05 | L6 |
+| L12 | Thèmes fournis, en-têtes et pieds de page, aperçu de tout format d'écran, vue scène | THM-04, THM-05, PRJ-04, PRJ-05 | L2 |
+| L13 | VideoPsalm avancé (écriture, autres éléments, détection des nouveautés), modification rapide, recherche globale | VPS-06, VPS-07, VPS-08, ERG-04, ERG-05 | L3, L8 |
+
+Recette V2 : section 8.
+
+### V3 : confort et diffusion
+
+| Lot | Contenu | Exigences | Dépend de |
+| --- | --- | --- | --- |
+| L14 | Serveur local, page web de télécommande, protection par code | TEL-01, TEL-02 | L6 |
+| L15 | Application Ibada Remote : appairage, fonctionnement sans Internet, commandes, aperçu, reconnexion | TEL-03, TEL-04, TEL-05, TEL-06, TEL-07, TEL-08 | L14 |
+| L16 | Écran de scène, transitions, styles hiérarchiques, verrouillage du style, mise en évidence de mots | PRJ-06, THM-06, THM-07, THM-08, AGD-06, CHT-12 | L12 |
+| L17 | Médias avancés : Word et LibreOffice, recherche de médias par mots-clés, pages web et YouTube, réglage vidéo | MED-05, MED-06, MED-07, MED-08 | L7 |
+| L18 | Bibliothèques en ligne, téléchargement de Bibles, impression des livrets, agenda portable | CHT-13, CHT-14, BIB-07, BIB-08, AGD-07 | L8, L10 |
+| L19 | Ergonomie et diffusion : tactile, mode débutant, version portable, protection des bibliothèques, prise en main, texte dynamique | ERG-06, ERG-07, ERG-08, ERG-09, ERG-10, ANN-06 | L11 |
+
+Recette V3 : section 8. Les lots L14 et L15 peuvent avancer en parallèle des lots L16 à L19.
+
+### V4 : intégrations et automatisation
+
+| Lot | Contenu | Exigences | Dépend de |
+| --- | --- | --- | --- |
+| L20 | Automatisation : macros, actions de diapositive, marqueurs, Stream Deck, API locale | AUT-01, AUT-02, AUT-03, AUT-04, AUT-05 | L14 |
+| L21 | CCLI et services de chants : SongSelect, rapports CCLI, MultiTracks | CHT-15, CHT-16, CHT-17 | L8 |
+| L22 | Planification, annonces en parallèle, bandeau de paroles (à préciser) | AGD-09, ANN-07, ANN-08 | L11, L20 |
+| L23 | Plusieurs sorties, effets, objets personnalisés, masques, bibliothèque de visuels | PRJ-07, THM-09, THM-10, MED-09 | L12 |
+| L24 | Plusieurs télécommandes avec droits distincts | TEL-09 | L15 |
+
+Recette V4 : section 8.
+
+### V5 : régie professionnelle
+
+| Lot | Contenu | Exigences | Dépend de |
+| --- | --- | --- | --- |
+| L25 | Sorties professionnelles : clé alpha, NDI, SDI, Edge Blend, diffusion résiliente (à étudier) | PRJ-08, PRJ-09, PRJ-10, PRJ-11, PRJ-12 | L23 |
+| L26 | Timeline, MIDI et DMX, timecode | AUT-06, AUT-07, AUT-08 | L20 |
+| L27 | Liaison réseau entre ordinateurs, Planning Center, service Cloud (à préciser), entrées vidéo | AUT-09, AUT-10, AUT-11, AGD-08, MED-10 | L20, L23 |
+
+Recette V5 : section 8.
