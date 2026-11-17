@@ -474,3 +474,40 @@ Le code, la documentation et les versions d'Ibada sont tenus dans un seul dépô
 | Documentation | Un fichier de présentation, la description du format de la bibliothèque VideoPsalm une fois analysé (VPS), et un journal des décisions techniques. |
 | Travail sans Internet | Le dépôt est cloné sur l'ordinateur de développement ; les modifications sont envoyées dès que la connexion le permet. |
 | Auteur des commits | Les envois se font au nom de Chadrack Londe, sans mention d'un outil ou d'un assistant. |
+
+## 12. Voies à suivre et règle de travail
+
+Ce cahier est la référence du projet. Cette section recense ce qu'il reste à faire et à décider ; elle est mise à jour au fil du travail.
+
+**Règle de travail (Chadrack et Claude)**
+
+1. Avant de continuer, relire ce cahier : dans le dépôt, `docs/cahier-des-charges.md`, rappelé par le fichier `CLAUDE.md` à la racine.
+2. Repérer la version en cours (section 3) et ses exigences (section 4) ; ne développer que ce qui y figure.
+3. Si une idée n'y figure pas, l'ajouter d'abord au cahier avec un identifiant, une version cible et une source, puis la développer.
+4. Après chaque décision ou changement de périmètre, mettre à jour le cahier et les décisions ouvertes (section 9), dans le même commit que le code concerné.
+5. Quand le code et le cahier divergent, le dire et corriger l'un ou l'autre explicitement, sans laisser l'écart.
+6. Le fichier du dépôt fait foi ; la copie du document en ligne est mise à jour à la demande.
+
+**Voies à suivre, dans l'ordre**
+
+1. Décider de la visibilité du dépôt (public aujourd'hui, privé prévu en section 11) et corriger la section 11 en conséquence.
+2. Fournir un recueil de chants et une Bible de la bibliothèque VideoPsalm, hors du dépôt, puis analyser leur structure et la documenter dans `docs/` (VPS-01 à VPS-05).
+3. Réaliser le prototype V0 de la fenêtre de projection sur le matériel de l'église, avec chaque technologie encore en lice.
+4. Choisir la technologie du logiciel Windows et celle d'Ibada Remote.
+5. Vérifier les conditions d'utilisation de VideoPsalm et les licences des Bibles, puis choisir la licence du code.
+6. Passer la recette V0 (une heure de projection), puis commencer la V1.
+7. À la fin de chaque version : recette, adoption au culte, mise à jour du cahier, création des tâches de la version suivante.
+8. Faire avancer les versions V1 à V5 dans l'ordre ; revoir le contenu de V4 et V5 après la V3, selon les besoins réels de l'église.
+
+**Choix en suspens et voies possibles**
+
+| Décision | Voies possibles | Quand |
+| --- | --- | --- |
+| Technologie du logiciel Windows | Flutter, .NET (WPF), Tauri ou Electron | Après le prototype V0 |
+| Bibliothèque VideoPsalm | Lecture seule ; lecture et écriture au format VideoPsalm ; base propre avec export au format VideoPsalm (VPS-06) | Après l'analyse des fichiers |
+| Application Ibada Remote | Android seulement ; Android puis iOS ; même technologie que le logiciel Windows ou application native | Avant la V3 |
+| Langues de l'interface | Français, puis swahili, lingala, anglais dans l'ordre à fixer | Avant la V2 |
+| Visibilité du dépôt et licence du code | Dépôt privé ou public ; licence libre ou fermée | Avant toute ouverture du code |
+| Diffusion du logiciel | Usage interne ; partage avec d'autres églises | Après la V2 |
+| Fonctions citées sans description | Préciser ou abandonner Lyric Banner (ANN-08), Cloud (AUT-11) et Resi (PRJ-12) | Avant la V4 |
+| Contenu de V4 et V5 | Garder, réduire ou réordonner selon les besoins de l'église | Après la V3 |

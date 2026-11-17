@@ -8,6 +8,8 @@ Ibada (swahili : « culte ») est un logiciel Windows de projection pour le cult
 
 Phase de cadrage. Le cahier des charges est dans [`docs/cahier-des-charges.md`](docs/cahier-des-charges.md). Le développement avance par étapes : prototype V0, puis versions V1 à V5 (voir la section 3 du cahier des charges).
 
+**Avant de continuer le travail, relire le cahier des charges** (Chadrack comme Claude) : la règle de travail est à la section 12 et rappelée dans `CLAUDE.md`.
+
 ## Organisation du dépôt
 
 | Dossier | Contenu |
