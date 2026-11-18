@@ -1,6 +1,8 @@
 using System;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Interop;
 
 namespace IbadaPrototype;
 
@@ -8,16 +10,33 @@ public enum ProjectionMode { Slide, Black, Logo }
 
 public partial class ProjectionWindow : Window
 {
+    private readonly System.Drawing.Rectangle _bounds;
+
+    [DllImport("user32.dll")]
+    private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter,
+        int x, int y, int cx, int cy, uint flags);
+
+    private static readonly IntPtr HWND_TOPMOST = new(-1);
+    private const uint SWP_NOACTIVATE = 0x0010;
+
     public ProjectionWindow(System.Drawing.Rectangle bounds)
     {
+        _bounds = bounds;
         InitializeComponent();
         WindowStartupLocation = WindowStartupLocation.Manual;
-        Left = bounds.Left;
-        Top = bounds.Top;
-        Width = bounds.Width;
-        Height = bounds.Height;
         WindowState = WindowState.Normal;
         Loaded += OnLoaded;
+    }
+
+    // Placement en pixels physiques : évite l'erreur due à la mise à l'échelle Windows
+    // (125 %, 150 %…) sur le second écran. Les coordonnées de Screen.Bounds et de
+    // SetWindowPos sont dans le même espace.
+    protected override void OnSourceInitialized(EventArgs e)
+    {
+        base.OnSourceInitialized(e);
+        var hwnd = new WindowInteropHelper(this).Handle;
+        SetWindowPos(hwnd, HWND_TOPMOST, _bounds.Left, _bounds.Top,
+            _bounds.Width, _bounds.Height, SWP_NOACTIVATE);
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)

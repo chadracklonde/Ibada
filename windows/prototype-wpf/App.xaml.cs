@@ -9,6 +9,19 @@ public partial class App : Application
 {
     public static readonly Stopwatch StartupWatch = Stopwatch.StartNew();
 
+    private static readonly Stopwatch SinceLaunch = Stopwatch.StartNew();
+
+    public static void LogFirstRender()
+    {
+        try
+        {
+            File.AppendAllText(
+                Path.Combine(AppContext.BaseDirectory, "startup-log.txt"),
+                $"{DateTime.Now:O} premier affichage en {SinceLaunch.ElapsedMilliseconds} ms{Environment.NewLine}");
+        }
+        catch { }
+    }
+
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);

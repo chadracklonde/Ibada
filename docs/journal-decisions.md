@@ -31,3 +31,6 @@ Conséquences :
 
 ## 2026-11-18 — Prototype Electron : gelé, non retenu (ajout de Claude)
 Un troisième prototype (`windows/prototype-electron/`, Electron + TypeScript) a été commencé avant la décision WPF, avec un noyau de V1 (chants, Bible, agenda, session, thèmes) écrit avant la recette V0, contrairement à `CLAUDE.md`. Avec le choix de WPF, ce code n'est plus la cible : il est gelé, rien n'y est ajouté. À supprimer du dépôt ou à garder comme référence, au choix de Chadrack.
+
+## 2026-11-18 — Prototype WPF : corrections de Claude, à valider sur Windows
+Placement de la projection en pixels physiques (SetWindowPos) pour éviter l'erreur due à la mise à l'échelle Windows ; bouton « Diapositive » pour revenir de l'écran noir ou du logo ; mesure du délai jusqu'au premier affichage dans `startup-log.txt`. Non compilé ni testé (pas de SDK .NET ni de Windows côté Claude) : le premier `dotnet build` chez Chadrack fait foi.

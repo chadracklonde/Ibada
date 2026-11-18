@@ -25,6 +25,17 @@ public partial class OperatorWindow : Window
     {
         InitializeComponent();
         Loaded += OnLoaded;
+        ContentRendered += OnFirstRender;
+    }
+
+    private bool _firstRenderDone;
+
+    // Mesure jusqu'au premier affichage réel (cible : moins de 5 s, cahier section 5).
+    private void OnFirstRender(object? sender, EventArgs e)
+    {
+        if (_firstRenderDone) return;
+        _firstRenderDone = true;
+        App.LogFirstRender();
     }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
@@ -99,6 +110,9 @@ public partial class OperatorWindow : Window
         _projection.Show();
         StatusText.Text = $"Projection ouverte sur {screen.DeviceName}.";
     }
+
+    private void ShowSlide_Click(object sender, RoutedEventArgs e)
+        => _projection?.SetSlide(Slides[_current]);
 
     private void BlackScreen_Click(object sender, RoutedEventArgs e)
         => _projection?.SetMode(ProjectionMode.Black);

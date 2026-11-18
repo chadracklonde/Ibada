@@ -43,3 +43,6 @@ __pycache__/
 *.avi
 *.mp3
 *.wav
+
+# Journal de mesure du prototype WPF
+startup-log.txt

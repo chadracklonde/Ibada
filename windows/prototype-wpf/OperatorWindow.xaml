@@ -19,6 +19,8 @@
                       SelectionChanged="ScreenCombo_SelectionChanged" />
             <Button Content="Ouvrir la projection" Padding="12,6" Margin="12,0,0,0"
                     Click="OpenProjection_Click" />
+            <Button Content="Diapositive" Padding="12,6" Margin="8,0,0,0"
+                    Click="ShowSlide_Click" />
             <Button Content="Écran noir" Padding="12,6" Margin="8,0,0,0"
                     Click="BlackScreen_Click" />
             <Button Content="Logo" Padding="12,6" Margin="8,0,0,0"
