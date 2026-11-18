@@ -1,0 +1,19 @@
+{
+  "name": "ibada",
+  "version": "0.1.0",
+  "description": "Ibada : logiciel de projection pour le culte",
+  "private": true,
+  "main": "dist/main/main.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/copy-assets.mjs",
+    "test": "npm run build && node --test dist/tests/",
+    "start": "npm run build && electron .",
+    "package:win": "npm run build && node scripts/package-win.mjs"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "@types/node": "^26.6.6",
+    "electron": "^45.3.4",
+    "typescript": "^7.0.2"
+  }
+}

@@ -285,11 +285,13 @@ Le choix de la technologie dépend d'un seul risque : afficher proprement un sec
 | .NET (WPF) | Gestion mature des écrans multiples et de la vidéo sous Windows | Apprentissage de C# et de XAML |
 | Tauri ou Electron | Texte, transitions et thèmes faciles en HTML et CSS ; seconde fenêtre simple | Poids de l'application ; fluidité vidéo sur ordinateur modeste |
 
+**Prototypes** : un dossier par option dans `windows/` (`prototype-flutter`, `prototype-wpf`, `prototype-electron`). L'option Electron est la première réalisée, parce qu'elle seule se construit et se teste depuis Linux ; son noyau (`src/core`) est du TypeScript pur, indépendant de l'interface. Ce choix reste provisoire (`docs/journal-decisions.md`).
+
 **Décision à prendre après V0** : la technologie qui réussit les trois vérifications ci-dessus sur le matériel de l'église.
 
 **Modules** (indépendants de la technologie choisie)
 
-- **Bibliothèques** : chants, Bibles, médias, annonces, dans une base SQLite locale.
+- **Bibliothèques** : chants, Bibles, médias, annonces, dans une base SQLite locale (en V1, fichiers JSON avec écriture atomique, voir `docs/journal-decisions.md`).
 - **Moteur de diapositives** : transforme un chant, un verset ou une annonce en diapositives selon un thème et une résolution.
 - **Moteur de rendu** : dessine la diapositive, ses transitions et ses fonds animés ; il sert l'aperçu, le direct et l'écran de scène.
 - **Gestionnaire d'écrans** : détecte les moniteurs, attribue une sortie à chacun.

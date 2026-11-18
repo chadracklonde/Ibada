@@ -15,9 +15,9 @@ Phase de cadrage. Le cahier des charges est dans [`docs/cahier-des-charges.md`](
 | Dossier | Contenu |
 | --- | --- |
 | `docs/` | Cahier des charges, description du format de la bibliothèque VideoPsalm, journal des décisions |
-| `windows/` | Logiciel Ibada pour Windows |
+| `windows/` | Logiciel Ibada pour Windows : un prototype par technologie (`prototype-flutter`, `prototype-wpf`, `prototype-electron`) |
 | `remote/` | Application mobile Ibada Remote |
-| `tests/` | Jeu d'essai (chants du domaine public ou propres à l'église uniquement) |
+| `tests/` | Analyseur VideoPsalm (`analyse-videopsalm/`) et jeu d'essai (chants du domaine public ou propres à l'église uniquement) |
 
 ## Contenu exclu du dépôt
 
