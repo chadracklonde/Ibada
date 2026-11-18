@@ -575,6 +575,13 @@ Une version est terminée quand tous ses lots le sont et que sa recette (section
 | L5 | Bible : recherche par référence et par mot-clé, affichage d'un verset à la volée | BIB-02, BIB-03, BIB-04 | L2, L3 |
 | L6 | Agenda du culte, reprise après plantage, diapositives personnalisées, logo et écran noir, images | AGD-01, AGD-02, AGD-03, ANN-01, ANN-02, MED-01 | L4, L5 |
 
+**État des lots V1 (18 novembre 2026)**
+
+| Lot | État | Détail |
+| --- | --- | --- |
+| L1 | Logique faite et testée ; interface WPF à faire | `windows/Ibada.Core` : stockage JSON atomique, sauvegarde et restauration en ZIP avec copie de sécurité (ERG-03), textes traduisibles avec repli sur le français (ERG-02), réglages, raccourcis clavier configurables (ERG-01). 25 tests automatisés passent (`dotnet run --project windows/Ibada.Core.Tests`). La fenêtre WPF qui utilise ces briques (ruban, boutons, boîtes de sauvegarde) reste à écrire et à compiler sur Windows. |
+| L2 à L6 | À faire | |
+
 Recette V1 : section 8.
 
 ### V2 : culte complet
