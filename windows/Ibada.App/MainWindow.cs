@@ -25,7 +25,7 @@ public sealed class MainWindow : Window
     private readonly SlideView _live = new();
     private readonly TextBlock _status = new();
     private readonly Dictionary<LiveMode, Button> _modeButtons = new();
-    private Button _prev = null!, _next = null!, _golive = null!;
+    private Button _prev = null!, _next = null!, _golive = null!, _save = null!, _restore = null!;
     private TextBlock _slidesTitle = null!, _previewTitle = null!, _liveTitle = null!, _screenLabel = null!, _themeLabel = null!;
     private ProjectionWindow? _projection;
     private bool _updating;
@@ -65,9 +65,9 @@ public sealed class MainWindow : Window
             H.SetTheme(t.Id); Refresh();
         };
         top.Children.Add(_themes);
-        var save = Make("backup.create", (_, _) => DoBackup()); save.Margin = new Thickness(16, 0, 0, 0);
-        var restore = Make("backup.restore", (_, _) => DoRestore()); restore.Margin = new Thickness(6, 0, 0, 0);
-        top.Children.Add(save); top.Children.Add(restore);
+        _save = Make("backup.create", (_, _) => DoBackup()); _save.Margin = new Thickness(16, 0, 0, 0);
+        _restore = Make("backup.restore", (_, _) => DoRestore()); _restore.Margin = new Thickness(6, 0, 0, 0);
+        top.Children.Add(_save); top.Children.Add(_restore);
         DockPanel.SetDock(top, Dock.Top); root.Children.Add(top);
 
         // Barre du bas : état
@@ -153,7 +153,7 @@ public sealed class MainWindow : Window
         _slidesTitle.Text = H.Text.T("slides.title");
         _previewTitle.Text = H.Text.T("preview.title");
         _liveTitle.Text = H.Text.T("live.title");
-        foreach (var b in new[] { _prev, _next, _golive }.Concat(_modeButtons.Values))
+        foreach (var b in new[] { _prev, _next, _golive, _save, _restore }.Concat(_modeButtons.Values))
             b.Content = H.Text.T((string)b.Tag);
         UpdateOpenCloseText();
     }
