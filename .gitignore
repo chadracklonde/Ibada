@@ -1,36 +1,45 @@
-# Contenu protégé ou volumineux : jamais dans le dépôt (cahier des charges, section 11)
-/data/
-/bibliotheque/
-/videopsalm/
-/bibles/
-/chants/
-/media/
+# Données de l'application (jamais dans le dépôt — section 11)
+data/
+*.vpc
+*.vpb
+*.vpj
+bibliotheque-videopsalm/
+bibles/
+chants-proteges/
+videos/
+polices/
+
+# Build
+**/build/
+**/bin/
+**/obj/
+**/.dart_tool/
+**/.flutter-plugins
+**/node_modules/
+*.exe
+*.dll
+*.pdb
+*.app
+
+# IDE
+.vscode/
+.idea/
+*.user
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Ajouts (build TypeScript et médias lourds, section 11)
+**/dist/
 *.mp4
 *.mkv
 *.mov
 *.avi
 *.mp3
 *.wav
-
-# Fichiers de build et dépendances
-build/
-dist/
-bin/
-obj/
-out/
-.dart_tool/
-.flutter-plugins*
-node_modules/
-target/
-*.apk
-*.aab
-*.exe
-*.msi
-
-# Environnement local
-.idea/
-.vscode/
-*.log
-.env
-Thumbs.db
-.DS_Store
