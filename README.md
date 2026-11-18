@@ -1,28 +1,31 @@
 # Ibada
 
-Ibada (swahili : « culte ») est un logiciel Windows de projection pour le culte : paroles de chants, versets bibliques, annonces, images et vidéos. Il est pensé pour une église locale, fonctionne sans Internet et lit directement la bibliothèque VideoPsalm déjà utilisée par l'église.
+Ibada (swahili : « culte ») est un logiciel Windows de projection pour le culte :
+paroles de chants, versets bibliques, annonces, images et vidéos. Il fonctionne
+sans Internet et lit directement la bibliothèque VideoPsalm de l'église.
 
-**Ibada Remote** est l'application mobile qui sert de télécommande.
+**Ibada Remote** est l'application mobile de télécommande (V3).
 
-## État du projet
+## État
 
-Phase de cadrage. Le cahier des charges est dans [`docs/cahier-des-charges.md`](docs/cahier-des-charges.md). Le développement avance par étapes : prototype V0, puis versions V1 à V5 (voir la section 3 du cahier des charges).
+Phase de cadrage — V0 (prototype technique) en cours.
+Le cahier des charges fait foi : `docs/cahier-des-charges.md`.
 
-**Avant de continuer le travail, relire le cahier des charges** (Chadrack comme Claude) : la règle de travail est à la section 12 et rappelée dans `CLAUDE.md`.
-
-## Organisation du dépôt
+## Organisation
 
 | Dossier | Contenu |
-| --- | --- |
-| `docs/` | Cahier des charges, description du format de la bibliothèque VideoPsalm, journal des décisions |
-| `windows/` | Logiciel Ibada pour Windows : un prototype par technologie (`prototype-flutter`, `prototype-wpf`, `prototype-electron`) |
-| `remote/` | Application mobile Ibada Remote |
-| `tests/` | Analyseur VideoPsalm (`analyse-videopsalm/`) et jeu d'essai (chants du domaine public ou propres à l'église uniquement) |
+|---|---|
+| `docs/` | Cahier des charges, format VideoPsalm, journal des décisions |
+| `windows/` | Logiciel Windows (prototypes V0 : Flutter, WPF et Electron) |
+| `remote/` | Application mobile Ibada Remote (V3) |
+| `tests/` | Jeu d'essai et analyseur VideoPsalm |
 
-## Contenu exclu du dépôt
+## Prototype V0
 
-Ne jamais ajouter au dépôt la bibliothèque VideoPsalm, des Bibles, des chants protégés, des vidéos ni des polices sous licence. Ces données restent dans le dossier de données de l'application ; le `.gitignore` en écarte les emplacements habituels.
+Voir `docs/journal-decisions.md` pour l'avancement.
+Trois prototypes sont en lice : `windows/prototype-flutter/`, `windows/prototype-wpf/` et `windows/prototype-electron/` (ce dernier est le seul commencé).
+La technologie sera tranchée après la recette V0 (section 8 du cahier).
 
 ## Licence
 
-À choisir avant toute ouverture du code (voir les décisions ouvertes, section 9 du cahier des charges).
+À choisir avant toute ouverture du code (section 9 du cahier).
