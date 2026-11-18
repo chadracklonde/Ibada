@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Ibada — Projection"
         WindowStyle="None" ResizeMode="NoResize"
-        WindowState="Maximized" Background="Black"
-        ShowInTaskbar="False">
+        ShowInTaskbar="False" Background="Black"
+        WindowStartupLocation="Manual"
+        Topmost="True">
     <Grid>
         <MediaElement x:Name="BackgroundVideo" LoadedBehavior="Manual"
                       UnloadedBehavior="Manual" Stretch="UniformToFill"
@@ -18,5 +19,9 @@
                 <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="5" />
             </TextBlock.Effect>
         </TextBlock>
+        <TextBlock x:Name="LogoText" Visibility="Collapsed"
+                   Text="IBADA" Foreground="White" FontSize="120"
+                   FontWeight="Bold" HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
     </Grid>
 </Window>
