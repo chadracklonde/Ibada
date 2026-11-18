@@ -12,6 +12,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- WinForms n'est utilisé que pour lire les écrans ; ses espaces de noms implicites entrent en conflit avec WPF. -->
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Ibada.Core\Ibada.Core.csproj" />
   </ItemGroup>
 
