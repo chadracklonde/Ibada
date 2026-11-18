@@ -1,5 +1,6 @@
 using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Ibada.Core.Storage;
 
@@ -15,6 +16,7 @@ public sealed class JsonStore
         WriteIndented = true,
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping, // accents lisibles dans les fichiers
+        Converters = { new JsonStringEnumConverter() },         // énumérations lisibles (« Center » et non 1)
     };
 
     public string Dir { get; }

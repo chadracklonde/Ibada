@@ -580,7 +580,8 @@ Une version est terminée quand tous ses lots le sont et que sa recette (section
 | Lot | État | Détail |
 | --- | --- | --- |
 | L1 | Logique faite et testée ; interface WPF à faire | `windows/Ibada.Core` : stockage JSON atomique, sauvegarde et restauration en ZIP avec copie de sécurité (ERG-03), textes traduisibles avec repli sur le français (ERG-02), réglages, raccourcis clavier configurables (ERG-01). 25 tests automatisés passent (`dotnet run --project windows/Ibada.Core.Tests`). La fenêtre WPF qui utilise ces briques (ruban, boutons, boîtes de sauvegarde) reste à écrire et à compiler sur Windows. |
-| L2 à L6 | À faire | |
+| L2 | Logique faite et testée ; fenêtres WPF à faire | THM-01 et THM-02 : thèmes (fond, police, taille, couleur, alignement, gras, italique, souligné, ombre, contour), quatre thèmes fournis, thèmes personnels enregistrés ; les diapositives désignent un thème, donc modifier un thème change toutes celles qui l'utilisent. THM-03 : toutes les longueurs sont données pour une hauteur de 1080 et mises à l'échelle (testé de 1280×720 à 3840×2160, et en 4:3). PRJ-02 et PRJ-03 : aperçu séparé du direct, projeter, suivant et précédent, noir, logo et texte vide, retour à la diapositive en rappuyant, commandes du clavier ; au chargement la projection est noire. PRJ-01 (fenêtre plein écran sans bordure) existe dans `prototype-wpf` ; le curseur masqué et l'absence de notifications seront ajoutés dans l'application WPF finale. 28 tests ajoutés (53 au total). |
+| L3 à L6 | À faire | |
 
 Recette V1 : section 8.
 
