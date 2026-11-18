@@ -1,0 +1,39 @@
+<Window x:Class="IbadaPrototype.OperatorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Ibada — Opérateur (V0)" Height="640" Width="1000"
+        WindowStartupLocation="CenterScreen" Background="#111">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Aperçu de la diapositive courante -->
+        <Border Grid.Row="0" Margin="16" Background="Black">
+            <Grid>
+                <MediaElement x:Name="BackgroundVideo" LoadedBehavior="Manual"
+                              UnloadedBehavior="Manual" Stretch="UniformToFill"
+                              IsMuted="True" />
+                <TextBlock x:Name="SlideText"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           TextAlignment="Center" Foreground="White"
+                           FontSize="56" FontWeight="Bold" Margin="32">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="4" />
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Grid>
+        </Border>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal"
+                    HorizontalAlignment="Center" Margin="12">
+            <Button Content="◀ Précédent" Padding="16,8" Margin="0,0,8,0"
+                    Click="Prev_Click" />
+            <Button Content="Suivant ▶" Padding="16,8" Margin="0,0,8,0"
+                    Click="Next_Click" />
+            <Button Content="Ouvrir la projection" Padding="16,8"
+                    Click="OpenProjection_Click" />
+        </StackPanel>
+    </Grid>
+</Window>
