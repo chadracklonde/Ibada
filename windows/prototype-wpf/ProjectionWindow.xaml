@@ -1,0 +1,22 @@
+<Window x:Class="IbadaPrototype.ProjectionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Ibada — Projection"
+        WindowStyle="None" ResizeMode="NoResize"
+        WindowState="Maximized" Background="Black"
+        ShowInTaskbar="False">
+    <Grid>
+        <MediaElement x:Name="BackgroundVideo" LoadedBehavior="Manual"
+                      UnloadedBehavior="Manual" Stretch="UniformToFill"
+                      IsMuted="True" />
+        <TextBlock x:Name="SlideText"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   TextAlignment="Center" Foreground="White"
+                   FontSize="72" FontWeight="Bold" Margin="40"
+                   TextWrapping="Wrap">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="5" />
+            </TextBlock.Effect>
+        </TextBlock>
+    </Grid>
+</Window>

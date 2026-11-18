@@ -1,4 +1,16 @@
-# Prototype L0, option B : .NET (WPF)
+# Prototype V0 — .NET WPF
 
-Emplacement du prototype WPF (fenêtre de projection sur second écran, texte avec ombre et contour, vidéo en boucle).
-Vide pour l'instant. Se construit sur un poste Windows avec le SDK .NET.
+Même objectif que le prototype Flutter (cahier, section 8) : deux fenêtres,
+texte ombré, vidéo en boucle, second écran plein écran, démarrage rapide.
+
+## Prérequis
+
+- .NET 8 SDK
+- Windows 10/11 64 bits
+
+## Lancer
+
+```bash
+dotnet restore
+dotnet run --project IbadaPrototype.csproj
+```
