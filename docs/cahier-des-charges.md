@@ -4,7 +4,7 @@ Nov 17, 2026 · Chadrack Londe
 
 ## 1. Contexte et objectifs
 
-Ce cahier des charges décrit un logiciel Windows de projection pour le culte, d'abord destiné à l'église locale, qui reprend à terme toutes les fonctions de VideoPsalm, OpenLP, ProPresenter et FreeWorship Pro, livrées version après version.
+Ce cahier des charges décrit un logiciel Windows de projection pour le culte, d'abord destiné à l'église locale, qui reprend à terme les fonctions de VideoPsalm, OpenLP, ProPresenter et FreeWorship Pro, livrées version après version. Pour toute fonction qui n'existe que dans un logiciel ou un service payant, Ibada développe sa propre alternative, gratuite et libre, ou une fonction proche (section 4.11).
 
 **Objectifs**
 
@@ -12,6 +12,7 @@ Ce cahier des charges décrit un logiciel Windows de projection pour le culte, d
 - Livrer une version 1 utilisable en culte réel avec un ordinateur et un projecteur.
 - Couvrir progressivement l'ensemble des fonctions recensées, sans en oublier : la section 10 relie chaque fonction des quatre logiciels à une exigence et à une version.
 - Offrir une interface en français, puis en swahili, lingala et anglais.
+- Ne jamais dépendre d'un abonnement, d'une licence payante ni d'un service en ligne pour utiliser une fonction : chaque fonction d'un logiciel payant est remplacée par une alternative libre ou une fonction proche conçue pour Ibada (section 4.11).
 
 **Périmètre**
 
@@ -236,6 +237,26 @@ L'église dispose déjà de la bibliothèque VideoPsalm (recueils de chants, Bib
 | AUT-10 | Intégration Planning Center : synchronisation des playlists avec l'ordre du service et Services LIVE | V5 | PP |
 | AUT-11 | Service Cloud (cité par ProPresenter sans description) : à préciser ; la sauvegarde sur dossier synchronisé (AGD-07) couvre le besoin de base | V5 | PP |
 
+### 4.11 Alternatives libres aux fonctions payantes (ALT)
+
+Décision du 18 novembre 2026 : on ne reproduit pas les fonctions des logiciels et services payants (ProPresenter, FreeWorship Pro, SongSelect, MultiTracks, ProContent, Resi, Planning Center, Stream Deck) telles quelles. Pour chacune, Ibada propose une alternative gratuite, fondée sur des formats et protocoles ouverts, ou une fonction proche conçue pour l'église. Les exigences d'origine de la section 4 restent le but fonctionnel ; la présente section dit comment l'atteindre sans rien payer. Une fonction de ce type ne peut pas être déclarée terminée si elle exige un compte, un abonnement ou un logiciel payant.
+
+| ID | Exigence | Remplace ou complète | Version | Source |
+| --- | --- | --- | --- | --- |
+| ALT-01 | Règle générale : aucune fonction d'Ibada ne requiert d'abonnement, de licence par poste, de compte en ligne ni de filigrane ; pas de limite d'installations | Toutes | V1 | Décision |
+| ALT-02 | Pas de copie des éléments propriétaires : noms, interfaces, visuels et fichiers des logiciels payants ne sont pas reproduits ; les fonctions sont réimplémentées à notre façon | Toutes (source PP, FW) | V1 | Décision |
+| ALT-03 | Formats ouverts d'échange : OpenLyrics et OpenSong pour les chants, ChordPro pour les accords, OSIS ou USFM pour les Bibles, ICS et CSV pour les agendas ; export complet à tout moment | CHT-11, AGD-07 | V2 | OL |
+| ALT-04 | Journal d'utilisation des chants (date, chant, numéro CCLI s'il est connu) avec export CSV, sans abonnement ni compte ; l'église l'utilise pour ses déclarations | CHT-15, CHT-16 (SongSelect) | V3 | PP |
+| ALT-05 | Import de chants depuis fichiers texte, OpenLyrics et ChordPro déposés par l'utilisateur, à la place de la recherche dans le catalogue SongSelect | CHT-15 | V3 | PP |
+| ALT-06 | Pistes audio locales : associer plusieurs fichiers audio à un chant (instrument, voix, version) et les lire depuis l'agenda, à la place de MultiTracks | CHT-17, CHT-09 | V4 | PP |
+| ALT-07 | Bibliothèque de visuels libres de droits : l'utilisateur importe des paquets de fonds et d'images du domaine public ou sous licence libre (CC0, CC BY), avec leur licence enregistrée ; Ibada fournit un petit lot d'origine propre | MED-09 (ProContent) | V4 | PP |
+| ALT-08 | Boutons personnalisables : pages de boutons (suivant, précédent, messages, macros) affichées dans la télécommande web et mobile, plus raccourcis clavier et MIDI, à la place du Stream Deck | AUT-04 | V4 | PP |
+| ALT-09 | Modèles de thèmes partageables en fichier : un thème, un fond et ses réglages s'exportent et s'importent entre ordinateurs, à la place des « looks » et accessoires propriétaires | THM-10, THM-02 | V4 | PP |
+| ALT-10 | Diffusion en direct sans service payant : sortie plein écran capturable par un logiciel libre de diffusion (par exemple OBS Studio), et sortie NDI quand elle est disponible, à la place de Resi | PRJ-12, PRJ-09 | V5 | PP |
+| ALT-11 | Planification sans compte en ligne : import et export de l'ordre du service au format CSV ou ICS, et API locale (AUT-05), à la place de Planning Center | AGD-08, AUT-10 | V5 | PP |
+| ALT-12 | Liaison réseau sur protocole ouvert (WebSocket sur le réseau local, sans serveur extérieur) entre plusieurs ordinateurs, à la place du service Cloud et du Network Link propriétaires | AUT-09, AUT-11 | V5 | PP |
+| ALT-13 | Sauvegarde et synchronisation par dossier au choix (disque, clé USB, dossier synchronisé par un outil libre), sans service Cloud imposé | AUT-11, AGD-07 | V5 | PP |
+
 ## 5. Exigences non fonctionnelles
 
 La fiabilité pendant le culte passe avant toute nouvelle fonction : un logiciel de projection qui plante devant l'assemblée est pire qu'un logiciel plus simple. Les valeurs chiffrées sont des cibles proposées, à valider avec le prototype V0 sur le matériel de l'église.
@@ -326,6 +347,7 @@ Le risque principal est le volume : ces quatre logiciels représentent des anné
 | Import de formats tiers incomplet | Chants mal migrés | Jeu d'essai réel de l'église, vérification chant par chant pour les premiers imports |
 | Matériel faible ou coupures de courant | Saccades, perte de travail | Cibles de la section 5 testées sur le matériel réel ; sauvegarde automatique |
 | Fonctions citées sans description (Lyric Banner, Cloud) | Exigence floue | À préciser avant d'être développées (ANN-08, AUT-11) |
+| Alternatives libres moins complètes que les services payants | Écart de confort avec ProPresenter ou SongSelect | Section 4.11 : formats ouverts, import par l'utilisateur ; écarts listés dans les notes de version |
 
 **Décisions à prendre**
 
@@ -335,6 +357,7 @@ Le risque principal est le volume : ces quatre logiciels représentent des anné
 - [ ] Traductions bibliques à inclure, et leur licence
 - [ ] Bibliothèque VideoPsalm : lecture seule, ou aussi écriture dans ce format (VPS-06), à trancher après l'analyse des fichiers
 - [ ] Matériel de l'église : ordinateur, projecteur, écrans, carte son
+- [x] Fonctions des logiciels payants : alternatives libres ou fonctions proches, jamais de copie ni de dépendance payante (18 novembre 2026, section 4.11)
 - [ ] Diffusion du logiciel : usage interne ou partage avec d'autres églises ; dépôt privé au départ, licence du code à choisir avant toute ouverture (section 11)
 
 ## 10. Matrice de couverture
@@ -452,6 +475,10 @@ Toutes les fonctions relevées sur les quatre pages sont rattachées à une exig
 | Recherche de passages bibliques, plein texte | BIB-03 |
 | Verrouillage du style | THM-08 |
 
+### Alternatives libres (ALT)
+
+Pour les fonctions des logiciels et services payants, la colonne « Exigence » des tableaux ci-dessus donne le but fonctionnel ; la façon de l'atteindre sans rien payer est donnée par les exigences ALT-01 à ALT-13 de la section 4.11.
+
 ### Points sans exigence propre
 
 - **Support par e-mail 24 h sur 24 (VideoPsalm)** : service humain, non logiciel. Il est remplacé par un guide intégré (ERG-10) et un journal d'erreurs (section 5).
@@ -509,6 +536,7 @@ Ce cahier est la référence du projet. Cette section recense ce qu'il reste à 
 | Langues de l'interface | Français, puis swahili, lingala, anglais dans l'ordre à fixer | Avant la V2 |
 | Visibilité du dépôt et licence du code | Dépôt privé ou public ; licence libre ou fermée | Avant toute ouverture du code |
 | Diffusion du logiciel | Usage interne ; partage avec d'autres églises | Après la V2 |
+| Alternatives aux fonctions payantes | Garder les ALT-01 à ALT-13 ; en abandonner certaines si l'église n'en a pas l'usage | Après la V2 |
 | Fonctions citées sans description | Préciser ou abandonner Lyric Banner (ANN-08), Cloud (AUT-11) et Resi (PRJ-12) | Avant la V4 |
 | Contenu de V4 et V5 | Garder, réduire ou réordonner selon les besoins de l'église | Après la V3 |
 
@@ -535,7 +563,7 @@ Une version est terminée quand tous ses lots le sont et que sa recette (section
 
 | Lot | Contenu | Exigences | Dépend de |
 | --- | --- | --- | --- |
-| L1 | Socle du logiciel : base de données, gestion des écrans, interface en français, clavier, sauvegarde et restauration | ERG-01, ERG-02, ERG-03 | L0 |
+| L1 | Socle du logiciel : base de données, gestion des écrans, interface en français, clavier, sauvegarde et restauration, règles ALT | ERG-01, ERG-02, ERG-03, ALT-01, ALT-02 | L0 |
 | L2 | Moteur de diapositives et de rendu, thèmes de base, projection plein écran, aperçu et direct | THM-01, THM-02, THM-03, PRJ-01, PRJ-02, PRJ-03 | L1 |
 | L3 | Lecteur de la bibliothèque VideoPsalm (chants et Bibles), protection des fichiers d'origine, journal des contenus non reconnus | VPS-01, VPS-02, VPS-03, VPS-04, VPS-05, BIB-01 | L1 |
 | L4 | Chants : bibliothèque, recherche instantanée, ordre des couplets, affichage couplet par couplet | CHT-01, CHT-02, CHT-03, CHT-04 | L2, L3 |
@@ -549,7 +577,7 @@ Recette V1 : section 8.
 | Lot | Contenu | Exigences | Dépend de |
 | --- | --- | --- | --- |
 | L7 | Vidéo et audio, fonds animés, PowerPoint et PDF, glisser-déposer, lecture en boucle | MED-02, MED-03, MED-04, AGD-04, AGD-05 | L6 |
-| L8 | Chants avancés : recueils, édition à la volée, éditeur de paroles, MP3 associés, bilingue, imports d'autres logiciels | CHT-05, CHT-06, CHT-07, CHT-09, CHT-10, CHT-11 | L4 |
+| L8 | Chants avancés : recueils, édition à la volée, éditeur de paroles, MP3 associés, bilingue, imports d'autres logiciels, formats ouverts | CHT-05, CHT-06, CHT-07, CHT-09, CHT-10, CHT-11, ALT-03 | L4 |
 | L9 | Accords : affichage, transposition, capo, ChordPro | CHT-08 | L8 |
 | L10 | Bible avancée : affichage bilingue, recueil de versets | BIB-05, BIB-06 | L5 |
 | L11 | Annonces, alertes, horloge, compte à rebours et minuteurs | ANN-03, ANN-04, ANN-05 | L6 |
@@ -566,7 +594,7 @@ Recette V2 : section 8.
 | L15 | Application Ibada Remote : appairage, fonctionnement sans Internet, commandes, aperçu, reconnexion | TEL-03, TEL-04, TEL-05, TEL-06, TEL-07, TEL-08 | L14 |
 | L16 | Écran de scène, transitions, styles hiérarchiques, verrouillage du style, mise en évidence de mots | PRJ-06, THM-06, THM-07, THM-08, AGD-06, CHT-12 | L12 |
 | L17 | Médias avancés : Word et LibreOffice, recherche de médias par mots-clés, pages web et YouTube, réglage vidéo | MED-05, MED-06, MED-07, MED-08 | L7 |
-| L18 | Bibliothèques en ligne, téléchargement de Bibles, impression des livrets, agenda portable | CHT-13, CHT-14, BIB-07, BIB-08, AGD-07 | L8, L10 |
+| L18 | Bibliothèques en ligne, téléchargement de Bibles, impression des livrets, agenda portable, journal des chants et import par fichiers | CHT-13, CHT-14, BIB-07, BIB-08, AGD-07, ALT-04, ALT-05 | L8, L10 |
 | L19 | Ergonomie et diffusion : tactile, mode débutant, version portable, protection des bibliothèques, prise en main, texte dynamique | ERG-06, ERG-07, ERG-08, ERG-09, ERG-10, ANN-06 | L11 |
 
 Recette V3 : section 8. Les lots L14 et L15 peuvent avancer en parallèle des lots L16 à L19.
@@ -575,10 +603,10 @@ Recette V3 : section 8. Les lots L14 et L15 peuvent avancer en parallèle des lo
 
 | Lot | Contenu | Exigences | Dépend de |
 | --- | --- | --- | --- |
-| L20 | Automatisation : macros, actions de diapositive, marqueurs, Stream Deck, API locale | AUT-01, AUT-02, AUT-03, AUT-04, AUT-05 | L14 |
-| L21 | CCLI et services de chants : SongSelect, rapports CCLI, MultiTracks | CHT-15, CHT-16, CHT-17 | L8 |
+| L20 | Automatisation : macros, actions de diapositive, marqueurs, boutons personnalisables (Stream Deck en option), API locale | AUT-01, AUT-02, AUT-03, AUT-04, AUT-05, ALT-08 | L14 |
+| L21 | CCLI et services de chants : SongSelect (facultatif), rapports CCLI, pistes audio locales | CHT-15, CHT-16, CHT-17, ALT-06 | L8 |
 | L22 | Planification, annonces en parallèle, bandeau de paroles (à préciser) | AGD-09, ANN-07, ANN-08 | L11, L20 |
-| L23 | Plusieurs sorties, effets, objets personnalisés, masques, bibliothèque de visuels | PRJ-07, THM-09, THM-10, MED-09 | L12 |
+| L23 | Plusieurs sorties, effets, objets personnalisés, masques, bibliothèque de visuels libres, modèles de thèmes partageables | PRJ-07, THM-09, THM-10, MED-09, ALT-07, ALT-09 | L12 |
 | L24 | Plusieurs télécommandes avec droits distincts | TEL-09 | L15 |
 
 Recette V4 : section 8.
@@ -587,8 +615,8 @@ Recette V4 : section 8.
 
 | Lot | Contenu | Exigences | Dépend de |
 | --- | --- | --- | --- |
-| L25 | Sorties professionnelles : clé alpha, NDI, SDI, Edge Blend, diffusion résiliente (à étudier) | PRJ-08, PRJ-09, PRJ-10, PRJ-11, PRJ-12 | L23 |
+| L25 | Sorties professionnelles : clé alpha, NDI, SDI, Edge Blend, diffusion résiliente (à étudier), diffusion par logiciel libre | PRJ-08, PRJ-09, PRJ-10, PRJ-11, PRJ-12, ALT-10 | L23 |
 | L26 | Timeline, MIDI et DMX, timecode | AUT-06, AUT-07, AUT-08 | L20 |
-| L27 | Liaison réseau entre ordinateurs, Planning Center, service Cloud (à préciser), entrées vidéo | AUT-09, AUT-10, AUT-11, AGD-08, MED-10 | L20, L23 |
+| L27 | Liaison réseau entre ordinateurs, planification sans compte, service Cloud (à préciser), dossier de synchronisation, entrées vidéo | AUT-09, AUT-10, AUT-11, AGD-08, MED-10, ALT-11, ALT-12, ALT-13 | L20, L23 |
 
 Recette V5 : section 8.
