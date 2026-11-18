@@ -15,13 +15,14 @@ Le cahier des charges fait foi : `docs/cahier-des-charges.md`.
 
 ## Version en cours
 
-V0 — prototype technique (lot L0).
+V1 — culte de base (lots L1 à L6). Technologie Windows : .NET WPF (C#).
+V0 acceptée le 18 novembre 2026 sur décision de Chadrack, sans test sur le matériel de l'église : la recette V0 réelle (projecteur, une heure de projection, analyse des fichiers VideoPsalm) reste à faire.
 
 ## Interdits
 
 - Ne jamais committer la bibliothèque VideoPsalm, des Bibles, des chants
   protégés, des vidéos ni des polices sous licence (section 11).
-- Ne pas coder V1 avant la recette V0 (section 3 et section 12).
+- Ne pas coder une version avant que la précédente soit acceptée par Chadrack (section 3 et section 12).
 
 ## Commits
 

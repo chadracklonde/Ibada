@@ -34,3 +34,7 @@ Un troisième prototype (`windows/prototype-electron/`, Electron + TypeScript) a
 
 ## 2026-11-18 — Prototype WPF : corrections de Claude, à valider sur Windows
 Placement de la projection en pixels physiques (SetWindowPos) pour éviter l'erreur due à la mise à l'échelle Windows ; bouton « Diapositive » pour revenir de l'écran noir ou du logo ; mesure du délai jusqu'au premier affichage dans `startup-log.txt`. Non compilé ni testé (pas de SDK .NET ni de Windows côté Claude) : le premier `dotnet build` chez Chadrack fait foi.
+
+## 2026-11-18 — V0 acceptée, démarrage de la V1 (décision de Chadrack)
+Chadrack décide d'avancer à l'étape suivante après vérification de la cohérence des fichiers du prototype WPF (XAML bien formés, gestionnaires et noms présents), sans test sur le matériel. La recette V0 réelle reste à faire. `CLAUDE.md` est mis à jour : version en cours V1, interdiction de coder une version avant que la précédente soit acceptée.
+Choix techniques de la V1 : logique dans une bibliothèque C# pure `Ibada.Core` (testable sans Windows), stockage en fichiers JSON avec écriture atomique (SQLite reporté : le paquet NuGet n'est pas disponible dans l'environnement de test de Claude).

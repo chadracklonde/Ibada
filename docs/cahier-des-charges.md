@@ -57,6 +57,8 @@ Le développement avance en six étapes : un prototype technique, puis cinq vers
 | V4 | Intégrations et automatisation | Macros, actions de diapositive, API locale, Stream Deck, SongSelect et rapports CCLI, MultiTracks, planification, annonces parallèles, plusieurs sorties, plusieurs télécommandes avec droits | Un culte entièrement piloté par macros et télécommande, avec rapport CCLI généré |
 | V5 | Régie professionnelle | NDI, SDI, clé alpha, Edge Blend, timeline, MIDI, DMX, timecode, liaison réseau entre ordinateurs, entrées vidéo, Planning Center | Une diffusion en direct avec deux ordinateurs redondants est testée |
 
+**État d'avancement (18 novembre 2026)** : la V0 est acceptée sur décision de Chadrack, sans test sur le matériel de l'église. La recette V0 réelle (une heure de projection sans saccade, démarrage en moins de 5 s) et l'analyse des fichiers VideoPsalm (VPS-01 à VPS-05) restent à faire et ne bloquent pas le démarrage de la V1 ; si l'analyse contredit une hypothèse de la V1, on corrige le code concerné. Version en cours : V1, lot L1.
+
 **Règle de priorité** : une fonction qui sert à chaque culte (V1, V2) passe avant une fonction de confort (V3), et avant une fonction de régie professionnelle (V4, V5). Les versions V4 et V5 peuvent être révisées selon les besoins réels de l'église.
 
 ## 4. Exigences fonctionnelles
