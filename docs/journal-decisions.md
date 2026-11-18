@@ -41,3 +41,6 @@ Choix techniques de la V1 : logique dans une bibliothèque C# pure `Ibada.Core` 
 
 ## 2026-11-18 — Application WPF de la V1 écrite, non compilée
 `windows/Ibada.App` (net8.0-windows) : fenêtre de l'opérateur construite en code (pas de XAML à tenir en accord), projection, dessin des diapositives (`SlideView`), restauration de sauvegarde. Contrôles faits ici : syntaxe C# analysée avec Roslyn, XML bien formé, 64 tests de `Ibada.Core`. Aucune compilation WPF possible côté Claude : le premier `dotnet build windows/Ibada.App` chez Chadrack fait foi, et ses erreurs de compilation sont à renvoyer. Le journal d'erreurs (`journal/erreurs.log`) est exclu des sauvegardes et conservé lors d'une restauration. Chadrack fournira ensuite le rapport de l'analyseur VideoPsalm (à relire avant tout commit : il peut contenir des extraits de chants protégés).
+
+## 2026-11-18 — Compilation Windows automatique (GitHub Actions)
+Claude ne peut ni compiler WPF ni exécuter Windows dans son environnement. Un workflow (`.github/workflows/windows-build.yml`) lance sur une machine Windows de GitHub les tests de `Ibada.Core` puis la compilation de `Ibada.App`, à chaque push. Cela remplace l'envoi manuel des erreurs de compilation ; cela ne remplace pas la recette sur le matériel de l'église.
