@@ -18,3 +18,10 @@ jobs:
         run: dotnet run --project windows/Ibada.Core.Tests -c Release
       - name: Compilation de l'application WPF
         run: dotnet build windows/Ibada.App -c Release
+      - name: Publication (sans installation de .NET)
+        run: dotnet publish windows/Ibada.App -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o publish
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Ibada-windows-x64
+          path: publish/Ibada.exe
+          retention-days: 30

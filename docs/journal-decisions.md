@@ -44,3 +44,6 @@ Choix techniques de la V1 : logique dans une bibliothèque C# pure `Ibada.Core` 
 
 ## 2026-11-18 — Compilation Windows automatique (GitHub Actions)
 Claude ne peut ni compiler WPF ni exécuter Windows dans son environnement. Un workflow (`.github/workflows/windows-build.yml`) lance sur une machine Windows de GitHub les tests de `Ibada.Core` puis la compilation de `Ibada.App`, à chaque push. Cela remplace l'envoi manuel des erreurs de compilation ; cela ne remplace pas la recette sur le matériel de l'église.
+
+## 2026-11-18 — Exécutable de test téléchargeable
+Le workflow publie `Ibada.exe` (Windows 64 bits, autonome, sans installation de .NET) comme fichier « Ibada-windows-x64 » de chaque exécution, conservé 30 jours, pour les essais de Chadrack. Version de test non signée : Windows peut afficher un avertissement SmartScreen.
