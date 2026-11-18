@@ -7,6 +7,9 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationTitle>Ibada — Prototype V0</ApplicationTitle>
+    <ApplicationIcon />
+    <AssemblyName>IbadaPrototype</AssemblyName>
+    <RootNamespace>IbadaPrototype</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="LibVLCSharp.WPF" Version="3.8.2" />
