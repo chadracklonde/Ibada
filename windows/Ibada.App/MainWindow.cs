@@ -202,12 +202,13 @@ public sealed class MainWindow : Window
             var idx = _screens.SelectedIndex;
             if (idx < 0 || idx >= all.Length) { SetStatus(H.Text.T("projection.noscreen")); return; }
             H.SetProjectionDisplay(idx);
-            _projection = new ProjectionWindow(all[idx].Bounds);
+            var windowed = all.Length < 2;
+            _projection = new ProjectionWindow(all[idx].Bounds, windowed);
             _projection.Closed += (_, _) => { _projection = null; UpdateOpenCloseText(); };
             _projection.Show();
             Refresh();
             UpdateOpenCloseText();
-            SetStatus(H.Text.T("projection.opened", _screens.SelectedItem?.ToString() ?? ""));
+            SetStatus(windowed ? H.Text.T("projection.windowed") : H.Text.T("projection.opened", _screens.SelectedItem?.ToString() ?? ""));
             Activate(); // le focus reste à l'opérateur, jamais à la fenêtre de projection
         }
         catch (Exception e) { Fail("projection", e); }
@@ -250,8 +251,8 @@ public sealed class MainWindow : Window
 
     private void OnKey(object sender, KeyEventArgs e)
     {
-        // Ne pas voler les touches quand l'opérateur choisit dans une liste déroulante.
-        if (e.OriginalSource is ComboBoxItem or ComboBox) return;
+        // Une liste déroulante ouverte garde ses touches ; fermée, elle ne doit pas bloquer les commandes du culte.
+        if (Keyboard.FocusedElement is ComboBox { IsDropDownOpen: true }) return;
         var key = e.Key == Key.System ? e.SystemKey : e.Key;
         if (key is Key.LeftCtrl or Key.RightCtrl or Key.LeftShift or Key.RightShift or Key.LeftAlt or Key.RightAlt) return;
         var gesture = Keyboard.Modifiers.HasFlag(ModifierKeys.Control) ? $"Ctrl+{key}" : key.ToString();

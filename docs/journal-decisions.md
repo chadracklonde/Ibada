@@ -47,3 +47,6 @@ Claude ne peut ni compiler WPF ni exécuter Windows dans son environnement. Un w
 
 ## 2026-11-18 — Exécutable de test téléchargeable
 Le workflow publie `Ibada.exe` (Windows 64 bits, autonome, sans installation de .NET) comme fichier « Ibada-windows-x64 » de chaque exécution, conservé 30 jours, pour les essais de Chadrack. Version de test non signée : Windows peut afficher un avertissement SmartScreen.
+
+## 2026-11-18 — Corrections de la projection après le premier essai de Chadrack
+« La projection ne marche pas encore » (symptôme exact à préciser). Trois causes probables corrigées sans les avoir vues : (1) manifeste DPI par écran, sans lequel `Screen.Bounds` donne de mauvaises coordonnées sur un second écran de définition différente ; (2) avec un seul écran, la projection plein écran masquait la fenêtre de l'opérateur : elle s'ouvre alors dans une fenêtre ordinaire ; (3) une liste déroulante ayant le focus bloquait toutes les touches de commande. La fenêtre est aussi replacée après son premier affichage.

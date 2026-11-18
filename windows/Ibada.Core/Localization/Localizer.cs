@@ -44,6 +44,7 @@ public sealed class Localizer
         ["dialog.ok"] = "OK",
         ["dialog.cancel"] = "Annuler",
         ["projection.opened"] = "Projection ouverte sur {0}.",
+        ["projection.windowed"] = "Un seul écran détecté : la projection s'ouvre dans une fenêtre déplaçable.",
         ["projection.closed"] = "Projection fermée.",
         ["projection.noscreen"] = "Aucun écran de projection disponible.",
         ["error.generic"] = "Une erreur s'est produite. Le détail est dans le journal.",
