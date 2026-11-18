@@ -16,15 +16,14 @@ Le cahier des charges fait foi : `docs/cahier-des-charges.md`.
 | Dossier | Contenu |
 |---|---|
 | `docs/` | Cahier des charges, format VideoPsalm, journal des décisions |
-| `windows/` | Logiciel Windows (prototypes V0 : Flutter, WPF et Electron) |
+| `windows/` | Logiciel Windows : .NET WPF retenu (`prototype-wpf/`) ; Flutter et Electron gardés en référence |
 | `remote/` | Application mobile Ibada Remote (V3) |
 | `tests/` | Jeu d'essai et analyseur VideoPsalm |
 
 ## Prototype V0
 
 Voir `docs/journal-decisions.md` pour l'avancement.
-Trois prototypes sont en lice : `windows/prototype-flutter/`, `windows/prototype-wpf/` et `windows/prototype-electron/` (ce dernier est le seul commencé).
-La technologie sera tranchée après la recette V0 (section 8 du cahier).
+La technologie du logiciel Windows est **.NET WPF** (décision du 18 novembre 2026), à confirmer par la recette V0 (section 8 du cahier) sur le matériel de l'église. `windows/prototype-flutter/` reste en référence ; `windows/prototype-electron/` est gelé.
 
 ## Licence
 

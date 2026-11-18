@@ -1,21 +1,33 @@
 # Journal des décisions
 
 ## 2026-11-17 — Création du dépôt, cahier des charges initial
-Nom retenu : Ibada ; application mobile : Ibada Remote.
-
 ## 2026-11-18 — Section 4.11 : alternatives libres aux fonctions payantes
-Pas de copie des fonctions payantes ni de dépendance à un abonnement (ALT-01 à ALT-13).
-
 ## 2026-11-18 — Démarrage V0 : deux prototypes (Flutter et WPF) + analyseur VideoPsalm
+## 2026-11-18 — Technologie du logiciel Windows : .NET WPF (C#) retenu
 
-## 2026-11-18 — Ajout d'un troisième prototype : Electron + TypeScript (ajout de Claude)
-Dossier `windows/prototype-electron/`. C'est la seule option que Claude peut construire et tester depuis Linux, avec une archive Windows sans poste Windows. Choix provisoire : la technologie définitive reste à trancher après la recette V0. Si Chadrack préfère deux prototypes seulement, ce dossier se retire.
+### Décision : .NET WPF (C#) pour le logiciel Windows
 
-## 2026-11-18 — Écart signalé : noyau V1 écrit avant la recette V0 (ajout de Claude)
-Le noyau TypeScript de `windows/prototype-electron/src/core` (chants, Bible, agenda, session, thèmes) relève de la V1 et a été écrit avant la recette V0, contrairement à `CLAUDE.md`. Il est gelé : rien n'y est ajouté avant la recette V0. Seul le périmètre L0 avance (fenêtre de projection, vidéo en boucle, analyseur VideoPsalm). La V1 est stockée en JSON plutôt qu'en SQLite (à revoir).
+Motifs (cahier, section 6) :
+- Gestion mature des écrans multiples et du plein écran sur second écran
+  (System.Windows.Forms.Screen.AllScreens + WindowStartupLocation=Manual).
+- Lecture vidéo native via MediaElement (Windows Media Foundation), sans
+  plugin tiers, stable sur le matériel de l'église.
+- Un seul langage pour le logiciel Windows ; l'application Ibada Remote
+  (V3) sera tranchée séparément.
+- Courbe d'apprentissage acceptable pour un développeur solo.
 
-### Décisions ouvertes (à trancher)
-- Technologie Windows : Flutter / .NET WPF / Tauri / Electron — après V0
-- Visibilité du dépôt : public (aujourd'hui) vs privé (section 11)
-- Licence du code
-- Format VideoPsalm : lecture seule ou écriture (VPS-06)
+Conséquences :
+- Le prototype Flutter reste dans le dépôt comme référence de comparaison
+  mais n'est plus la cible de développement.
+- Les lots L1 à L27 sont écrits en C# / XAML.
+- La décision est actée dans la section 9 du cahier (décisions ouvertes).
+
+### Décisions encore ouvertes
+- Visibilité du dépôt (public aujourd'hui vs privé section 11) — à trancher
+- Licence du code — avant toute ouverture
+- Format VideoPsalm : lecture seule ou écriture (VPS-06) — après analyse L0
+- Application Ibada Remote : Android d'abord, technologie à décider avant V3
+- Ordre des langues après le français (swahili, lingala, anglais)
+
+## 2026-11-18 — Prototype Electron : gelé, non retenu (ajout de Claude)
+Un troisième prototype (`windows/prototype-electron/`, Electron + TypeScript) a été commencé avant la décision WPF, avec un noyau de V1 (chants, Bible, agenda, session, thèmes) écrit avant la recette V0, contrairement à `CLAUDE.md`. Avec le choix de WPF, ce code n'est plus la cible : il est gelé, rien n'y est ajouté. À supprimer du dépôt ou à garder comme référence, au choix de Chadrack.

@@ -285,9 +285,9 @@ Le choix de la technologie dépend d'un seul risque : afficher proprement un sec
 | .NET (WPF) | Gestion mature des écrans multiples et de la vidéo sous Windows | Apprentissage de C# et de XAML |
 | Tauri ou Electron | Texte, transitions et thèmes faciles en HTML et CSS ; seconde fenêtre simple | Poids de l'application ; fluidité vidéo sur ordinateur modeste |
 
-**Prototypes** : un dossier par option dans `windows/` (`prototype-flutter`, `prototype-wpf`, `prototype-electron`). L'option Electron est la première réalisée, parce qu'elle seule se construit et se teste depuis Linux ; son noyau (`src/core`) est du TypeScript pur, indépendant de l'interface. Ce choix reste provisoire (`docs/journal-decisions.md`).
+**Prototypes** : un dossier par option dans `windows/` (`prototype-flutter`, `prototype-wpf`, `prototype-electron`).
 
-**Décision à prendre après V0** : la technologie qui réussit les trois vérifications ci-dessus sur le matériel de l'église.
+**Décision du 18 novembre 2026 : .NET WPF (C#) est retenu pour le logiciel Windows** (`docs/journal-decisions.md`) : gestion mature des écrans multiples, lecture vidéo native par MediaElement, un seul langage. Le prototype Flutter reste dans le dépôt comme référence de comparaison, sans développement. Le prototype Electron et son noyau TypeScript (`windows/prototype-electron/`) ne sont plus la cible ; ils restent gelés dans le dépôt en attendant d'être repris ou supprimés. Les vérifications ci-dessus (second écran, texte net, vidéo fluide) restent à passer par le prototype WPF sur le matériel de l'église.
 
 **Modules** (indépendants de la technologie choisie)
 
@@ -354,7 +354,8 @@ Le risque principal est le volume : ces quatre logiciels représentent des anné
 **Décisions à prendre**
 
 - [ ] Nom du logiciel : Ibada, retenu le 18 novembre 2026
-- [ ] Technologie : Flutter, .NET ou Tauri, tranchée après le prototype V0 ; technologie de l'application mobile et plateforme (Android d'abord, iOS à confirmer) à décider aussi
+- [x] Technologie du logiciel Windows : .NET WPF (C#), retenu le 18 novembre 2026, à confirmer par la recette V0 sur le matériel de l'église
+- [ ] Technologie de l'application mobile et plateforme (Android d'abord, iOS à confirmer)
 - [ ] Langues de l'interface après le français : swahili, lingala, anglais, dans quel ordre
 - [ ] Traductions bibliques à inclure, et leur licence
 - [ ] Bibliothèque VideoPsalm : lecture seule, ou aussi écriture dans ce format (VPS-06), à trancher après l'analyse des fichiers
@@ -521,8 +522,8 @@ Ce cahier est la référence du projet. Cette section recense ce qu'il reste à 
 
 1. Décider de la visibilité du dépôt (public aujourd'hui, privé prévu en section 11) et corriger la section 11 en conséquence.
 2. Fournir un recueil de chants et une Bible de la bibliothèque VideoPsalm, hors du dépôt, puis analyser leur structure et la documenter dans `docs/` (VPS-01 à VPS-05).
-3. Réaliser le prototype V0 de la fenêtre de projection sur le matériel de l'église, avec chaque technologie encore en lice.
-4. Choisir la technologie du logiciel Windows et celle d'Ibada Remote.
+3. Réaliser le prototype V0 de la fenêtre de projection (WPF) sur le matériel de l'église.
+4. Choisir la technologie d'Ibada Remote (celle du logiciel Windows est retenue : .NET WPF).
 5. Vérifier les conditions d'utilisation de VideoPsalm et les licences des Bibles, puis choisir la licence du code.
 6. Passer la recette V0 (une heure de projection), puis commencer la V1.
 7. À la fin de chaque version : recette, adoption au culte, mise à jour du cahier, création des tâches de la version suivante.
@@ -532,7 +533,7 @@ Ce cahier est la référence du projet. Cette section recense ce qu'il reste à 
 
 | Décision | Voies possibles | Quand |
 | --- | --- | --- |
-| Technologie du logiciel Windows | Flutter, .NET (WPF), Tauri ou Electron | Après le prototype V0 |
+| Technologie du logiciel Windows | **Décidé : .NET (WPF)** le 18 novembre 2026 ; à confirmer par la recette V0 | Recette V0 |
 | Bibliothèque VideoPsalm | Lecture seule ; lecture et écriture au format VideoPsalm ; base propre avec export au format VideoPsalm (VPS-06) | Après l'analyse des fichiers |
 | Application Ibada Remote | Android seulement ; Android puis iOS ; même technologie que le logiciel Windows ou application native | Avant la V3 |
 | Langues de l'interface | Français, puis swahili, lingala, anglais dans l'ordre à fixer | Avant la V2 |
@@ -559,7 +560,7 @@ Une version est terminée quand tous ses lots le sont et que sa recette (section
 
 | Lot | Contenu | Exigences | Dépend de |
 | --- | --- | --- | --- |
-| L0 | Prototype de la fenêtre de projection (second écran, texte avec ombre et contour, vidéo en boucle), analyse des fichiers VideoPsalm, choix de la technologie, vérification des licences | Aucune (prototype) | Aucun |
+| L0 | Prototype de la fenêtre de projection (second écran, texte avec ombre et contour, vidéo en boucle), analyse des fichiers VideoPsalm, confirmation de la technologie (.NET WPF), vérification des licences | Aucune (prototype) | Aucun |
 
 ### V1 : culte de base
 
