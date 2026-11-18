@@ -9,6 +9,13 @@ namespace Ibada.Core.Storage;
 public static class Backups
 {
     public const string FolderName = "sauvegardes";
+    public const string JournalFolderName = "journal";
+
+    // Ni les sauvegardes elles-mêmes, ni le journal d'erreurs : une restauration ne doit pas effacer la trace d'un incident.
+    private static bool Excluded(string rel)
+        => rel.StartsWith(FolderName + "/", StringComparison.Ordinal)
+        || rel.StartsWith(JournalFolderName + "/", StringComparison.Ordinal)
+        || rel.EndsWith(".tmp", StringComparison.Ordinal);
 
     private static string BackupDir(JsonStore store)
     {
@@ -38,8 +45,7 @@ public static class Backups
             foreach (var file in Directory.EnumerateFiles(store.Dir, "*", SearchOption.AllDirectories))
             {
                 var rel = Path.GetRelativePath(store.Dir, file).Replace('\\', '/');
-                if (rel.StartsWith(FolderName + "/", StringComparison.Ordinal) || rel.EndsWith(".tmp", StringComparison.Ordinal))
-                    continue;
+                if (Excluded(rel)) continue;
                 zip.CreateEntryFromFile(file, rel, CompressionLevel.Optimal);
             }
         }
@@ -73,7 +79,7 @@ public static class Backups
         foreach (var file in Directory.EnumerateFiles(store.Dir, "*", SearchOption.AllDirectories).ToList())
         {
             var rel = Path.GetRelativePath(store.Dir, file).Replace('\\', '/');
-            if (!rel.StartsWith(FolderName + "/", StringComparison.Ordinal)) File.Delete(file);
+            if (!Excluded(rel)) File.Delete(file);
         }
 
         foreach (var entry in zip.Entries)

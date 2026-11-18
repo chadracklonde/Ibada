@@ -1,6 +1,7 @@
 // Tests de la bibliothèque Ibada.Core. Programme console sans dépendance externe :
 // code de sortie 0 si tout passe, 1 sinon. Lancer : dotnet run --project Ibada.Core.Tests
 using System.IO.Compression;
+using Ibada.Core.Hosting;
 using Ibada.Core.Input;
 using Ibada.Core.Live;
 using Ibada.Core.Localization;
@@ -473,6 +474,109 @@ Test("l'événement Changed est signalé à chaque changement", () =>
     c.Load(new[] { new Slide(), new Slide() });
     c.Select(1); c.GoLive(); c.Previous(); c.SetMode(LiveMode.Logo);
     Equal(5, n);
+});
+
+
+Console.WriteLine("Touches WPF");
+Test("noms de touches WPF reconnus", () =>
+{
+    Equal("Enter", ShortcutMap.Normalize("Return")); Equal("PageDown", ShortcutMap.Normalize("Next"));
+    Equal("PageUp", ShortcutMap.Normalize("Prior")); Equal("Ctrl+1", ShortcutMap.Normalize("ctrl+D1"));
+    Equal("Escape", ShortcutMap.Normalize("Esc")); Equal("Back", ShortcutMap.Normalize("Backspace"));
+    Equal(Command.GoLive, new ShortcutMap().Resolve("Return"));
+    Equal(Command.NextSlide, new ShortcutMap().Resolve("Next"));
+});
+
+Console.WriteLine("AppHost");
+Test("premier démarrage : valeurs par défaut et diapositives d'essai", () =>
+{
+    var h = new AppHost(NewStore().Dir);
+    Equal("fr", h.Settings.Language); Equal("Écran noir", h.Text.T("mode.black"));
+    h.LoadSample();
+    Check(h.Live.Deck.Count >= 6, "diapositives d'essai attendues");
+    Check(h.Live.Deck.All(sl => sl.Text.Length > 0));
+    Equal(LiveMode.Black, h.Live.Projection.Mode);
+});
+Test("le thème choisi est enregistré et retrouvé au démarrage suivant", () =>
+{
+    var dir = NewStore().Dir;
+    var h = new AppHost(dir);
+    h.SetTheme("contraste"); h.SetProjectionDisplay(2);
+    var h2 = new AppHost(dir);
+    Equal("contraste", h2.Settings.ThemeId); Equal(2, h2.Settings.ProjectionDisplay);
+    Equal("contraste", h2.ThemeFor(null).Id);
+    Equal("nuit", h2.ThemeFor(new Slide { ThemeId = "inconnu" }).Id);
+    Equal("chaud", h2.ThemeFor(new Slide { ThemeId = "chaud" }).Id);
+});
+Test("thème inconnu choisi : repli sans enregistrer d'identifiant invalide", () =>
+{
+    var h = new AppHost(NewStore().Dir);
+    h.SetTheme("n'existe-pas");
+    Equal("nuit", h.Settings.ThemeId);
+});
+Test("raccourcis modifiés conservés d'un démarrage à l'autre", () =>
+{
+    var dir = NewStore().Dir;
+    var h = new AppHost(dir);
+    h.Shortcuts.Bind("F5", Command.GoLive); h.SaveSettings();
+    Equal(Command.GoLive, new AppHost(dir).Shortcuts.Resolve("F5"));
+});
+Test("geste du clavier : exécute la commande, ignore les touches inconnues", () =>
+{
+    var h = new AppHost(NewStore().Dir); h.LoadSample();
+    Equal(Command.NextSlide, h.HandleGesture("Space")); Equal(0, h.Live.Projection.Index);
+    h.HandleGesture("Right"); Equal(1, h.Live.Projection.Index);
+    Check(h.HandleGesture("F12") is null);
+    Equal(Command.CreateBackup, h.HandleGesture("Ctrl+S"));
+});
+Test("sauvegarde puis restauration : réglages et thèmes relus", () =>
+{
+    var h = new AppHost(NewStore().Dir);
+    h.Settings.ChurchName = "Avant"; h.SaveSettings();
+    h.Themes.Save(h.Themes.Get("nuit") with { Id = "perso1", Name = "Perso" });
+    var b = h.CreateBackup();
+    h.Settings.ChurchName = "Après"; h.SaveSettings();
+    h.Themes.Delete("perso1");
+    var safety = h.Restore(b);
+    Equal("Avant", h.Settings.ChurchName);
+    Equal("perso1", h.Themes.Get("perso1").Id);
+    Check(Backups.List(h.Store).Contains(safety));
+});
+Test("traduction chargée depuis le dossier langues", () =>
+{
+    var dir = NewStore().Dir;
+    var st = new JsonStore(dir);
+    st.Write("langues/sw.json", new Dictionary<string, string> { ["mode.black"] = "Skrini nyeusi" });
+    new AppSettings { Language = "sw" }.Save(st);
+    var h = new AppHost(dir);
+    Equal("Skrini nyeusi", h.Text.T("mode.black")); Equal("Logo", h.Text.T("mode.logo"));
+});
+Test("langue sans fichier de traduction : français", () =>
+{
+    var dir = NewStore().Dir;
+    new AppSettings { Language = "ln" }.Save(new JsonStore(dir));
+    Equal("Écran noir", new AppHost(dir).Text.T("mode.black"));
+});
+Test("journal d'erreurs : écrit, tourne, exclu des sauvegardes et des restaurations", () =>
+{
+    var h = new AppHost(NewStore().Dir);
+    h.LogError("essai", new InvalidOperationException("panne simulée"));
+    var log = File.ReadAllText(h.Store.Full(ErrorLog.RelativePath));
+    Check(log.Contains("essai") && log.Contains("panne simulée"));
+    var b = h.CreateBackup();
+    using (var z = ZipFile.OpenRead(Path.Combine(h.Store.Dir, "sauvegardes", b)))
+        Check(!z.Entries.Any(e => e.FullName.StartsWith("journal")), "le journal ne doit pas être dans la sauvegarde");
+    h.Restore(b);
+    Check(File.Exists(h.Store.Full(ErrorLog.RelativePath)), "une restauration ne doit pas effacer le journal");
+    File.WriteAllText(h.Store.Full(ErrorLog.RelativePath), new string('x', 600 * 1024));
+    h.LogError("suite", new Exception("autre"));
+    Check(File.Exists(h.Store.Full(ErrorLog.RelativePath + ".old")), "rotation attendue au-delà de 512 Ko");
+});
+Test("le journal ne lève jamais d'exception, même sur un dossier impossible", () =>
+{
+    var st = NewStore();
+    File.WriteAllText(Path.Combine(st.Dir, "journal"), "un fichier à la place du dossier");
+    ErrorLog.Write(st, "x", new Exception("y"));
 });
 
 Console.WriteLine();

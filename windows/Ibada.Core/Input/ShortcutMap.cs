@@ -69,8 +69,16 @@ public sealed class ShortcutMap
      .ToDictionary(k => k, k => k, StringComparer.OrdinalIgnoreCase);
 
     // Les noms de touches suivent ceux de WPF (Key.PageDown, Key.Space…) : la casse doit être exacte.
+    // Noms de touches WPF qui diffèrent de ceux de l'utilisateur : Key.Return, Key.Next (page suivante), Key.D1…
+    private static readonly Dictionary<string, string> KeyAliases = new(StringComparer.OrdinalIgnoreCase)
+    {
+        ["Return"] = "Enter", ["Next"] = "PageDown", ["Prior"] = "PageUp", ["Esc"] = "Escape", ["Backspace"] = "Back",
+    };
+
     private static string CanonicalKey(string key)
     {
+        if (KeyAliases.TryGetValue(key, out var alias)) return alias;
+        if (key.Length == 2 && key[0] is 'D' or 'd' && char.IsDigit(key[1])) return key[1].ToString();
         if (KnownKeys.TryGetValue(key, out var known)) return known;
         return key.Length == 1 ? key.ToUpperInvariant() : char.ToUpperInvariant(key[0]) + key[1..];
     }
