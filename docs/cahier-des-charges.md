@@ -354,8 +354,8 @@ Le risque principal est le volume : ces quatre logiciels représentent des anné
 **Décisions à prendre**
 
 - [ ] Nom du logiciel : Ibada, retenu le 18 novembre 2026
-- [x] Technologie du logiciel Windows : .NET WPF (C#), retenu le 18 novembre 2026, à confirmer par la recette V0 sur le matériel de l'église
-- [ ] Technologie de l'application mobile et plateforme (Android d'abord, iOS à confirmer)
+- [x] Technologie du logiciel Windows : .NET WPF (C#), retenue le 18 novembre 2026 (voir journal des décisions)
+- [ ] Technologie de l'application Ibada Remote : Android d'abord, à décider avant V3
 - [ ] Langues de l'interface après le français : swahili, lingala, anglais, dans quel ordre
 - [ ] Traductions bibliques à inclure, et leur licence
 - [ ] Bibliothèque VideoPsalm : lecture seule, ou aussi écriture dans ce format (VPS-06), à trancher après l'analyse des fichiers
